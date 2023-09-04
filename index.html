@@ -37,12 +37,20 @@
             margin-right: 20px;
         }
 
-        nav a {
+        nav ul li a:hover {
+            background-color: #fff; /* Background color on hover */
+            color: #7b79fc; /* Text color on hover */
+            border-radius: 3px; /* Rounded corners on hover */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+        }
+        
+        .nav-item a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             font-size: 18px;
-        }
+            padding: 8px 12px; /* Add some padding to the links for spacing */
+                    }
 
         section {
             padding: 30px;
@@ -88,13 +96,13 @@
         <h1>Yogesh Kumar Sharma</h1>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Work Experience</a></li>
-                <li><a href="#skill">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-
+                <li class="nav-item"><a href="#about">About</a></li>
+                <li class="nav-item"><a href="#experience">Work Experience</a></li>
+                <li class="nav-item"><a href="#contact">Contact</a></li>
+                <li class="nav-item"><a href="#skill">Skills</a></li>
             </ul>
         </nav>
+
     </header>
 
     <section id="about">
@@ -125,6 +133,7 @@
         <p>+91 7987183809</p>
         <p>LinkedIn: <a href="https://www.linkedin.com/in/syogesh942/">LinkedIn Me</a></p>
         <p>WhatsApp: <a href="https://wa.me/+917987183809">WhatsApp Me</a></p>
+        <p>GitHub: <a href="https://github.com/syogesh942">GitHub Link</a></p>
         <p><a href="yogesh_sharma.pdf">Click here to get resume</a></p>
     </section>
 
