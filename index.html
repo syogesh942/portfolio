@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yogesh's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
-        /* styles.css */
-
+        /* Custom styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #F5F5F5; /* Lighter gray background */
+            background-color: #f0f0f0;
+            /* Light gray background */
         }
 
         header {
@@ -37,20 +37,20 @@
             margin-right: 20px;
         }
 
-        nav ul li a:hover {
-            background-color: #fff; /* Background color on hover */
-            color: #7b79fc; /* Text color on hover */
-            border-radius: 3px; /* Rounded corners on hover */
-            transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
-        }
-        
-        .nav-item a {
+        nav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             font-size: 18px;
-            padding: 8px 12px; /* Add some padding to the links for spacing */
-                    }
+            padding: 8px 12px;
+            border-radius: 3px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #7b79fc;
+        }
 
         section {
             padding: 30px;
@@ -60,43 +60,22 @@
         h2 {
             font-size: 28px;
             margin-bottom: 20px;
+            color: #333;
         }
 
         p {
             font-size: 16px;
             line-height: 1.6;
+            color: #555;
         }
 
-        .about {
+        .border {
             margin-bottom: 30px;
             border: 1px solid #ccc;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .experience {
-            margin-bottom: 30px;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-            .skill {
-            margin-bottom: 30px;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact {
-            margin-bottom: 30px;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
         }
 
         footer {
@@ -109,56 +88,82 @@
 </head>
 <body>
     <header>
-        <h1>Yogesh Kumar Sharma</h1>
-        <nav>
-            <ul>
-                <li class="nav-item"><a href="#about">About</a></li>
-                <li class="nav-item"><a href="#experience">Work Experience</a></li>
-                <li class="nav-item"><a href="#skill">Skills</a></li>
-                <li class="nav-item"><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h1 id="name">Yogesh Kumar Sharma</h1>
+                </div>
+                <div class="col-12 col-md-6">
+                    <nav>
+                        <ul>
+                            <li class="nav-item"><a href="javascript:void(0);" onclick="showSection('about')">About</a></li>
+                            <li class="nav-item"><a href="javascript:void(0);" onclick="showSection('experience')">Work Experience</a></li>
+                            <li class="nav-item"><a href="javascript:void(0);" onclick="showSection('skill')">Skills</a></li>
+                            <li class="nav-item"><a href="javascript:void(0);" onclick="showSection('certification')">Certification</a></li>
+                            <li class="nav-item"><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </header>
 
     <section id="about">
         <h2>About Me</h2>
-        <div class="about">
-            <p>My skills and expertise contribute to future data science projects and initiatives, aiming to make a meaningful impact in the ever-evolving world of data analytics.</p>
+        <div class="border">
+            <p>As a passionate data scientist, I leverage my skills to drive future data projects and initiatives, with a focus on making a meaningful impact in the evolving realm of data analytics.</p>
         </div>
     </section>
 
     <section id="experience">
         <h2>Work Experience</h2>
-        <div class="experience">
+        <div class="border">
             <h3>Data Science Intern - Globussoft Technologies</h3>
-            <p>During my 10-month tenure as a Data Science Intern at Globussoft Technologies, I sharpened my expertise in web scrapping, data analysis, machine learning, and predictive modeling. My contributions to various projects significantly enhanced data-driven decision-making processes, facilitating more informed choices. This hands-on experience solidified my proficiency in Python, enabling me to tackle complex data challenges effectively.</p>
+            <p>During my 10-month tenure as a Data Science Intern at Globussoft Technologies, I honed my expertise in web scraping, data analysis, machine learning, and predictive modeling. My contributions to various projects significantly improved data-driven decision-making processes, enabling more informed choices. This hands-on experience solidified my proficiency in Python, empowering me to tackle complex data challenges effectively.</p>
         </div>
-        <!-- Add more work experience sections as needed -->
     </section>
 
     <section id="skill">
-        <h2>skills in Domain</h2>
-        <div class="skill">
+        <h2>Technical Skills</h2>
+        <div class="border">
             <p>Python, Pandas, NumPy, Matplotlib, Scipy, SQL, Exploratory Data Analysis, Data Manipulation, Data Visualization, Machine Learning, Natural Language Processing (NLP), Web Scraping, OpenCV (Image Processing)</p>
         </div>
-        <!-- Add more work experience sections as needed -->
+    </section>
+
+    <section id="certification">
+        <h2>Certification</h2>
+        <div class="border">
+            <p><a href="python_basic_certificate_copy.pdf">Python Basic Certificate<br>By Hackerrank</a></p>
+            <p><a href="1000008273_3403x2438.jpg">Python For Data Science <br>By National Programme on Technology Enhanced Learning</a></p>
+            <p><a href="UC-3aac104e-5413-447b-99f8-ef296c2b13f5.pdf">100 Days Of Code - The Complete Python Pro Bootcamp For 2023 <br> By Dr. Angela Yu</a></p>
+        </div>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
-        <div class="contact">
+        <div class="border">
             <p>Email: syogesh942@gmail.com</p>
             <p>+91 7987183809</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/syogesh942/">LinkedIn Me</a></p>
-            <p>WhatsApp: <a href="https://wa.me/+917987183809">WhatsApp Me</a></p>
-            <p>GitHub: <a href="https://github.com/syogesh942">GitHub Link</a></p>
-            <p><a href="yogesh_sharma.pdf">Click here to get resume</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/syogesh942/">LinkedIn Profile</a></p>
+            <p>WhatsApp: <a href="https://wa.me/+917987183809">WhatsApp Chat</a></p>
+            <p>GitHub: <a href="https://github.com/syogesh942">GitHub Portfolio</a></p>
+            <p><a href="yogesh_sharma_resume.pdf">Download Resume</a></p>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2023 Yogesh Kumar Sharma</p>
     </footer>
+
+    <script>
+        // JavaScript function to show a specific section and hide others
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section) => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
