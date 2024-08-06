@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yogesh's Portfolio</title>
     <link rel="icon" href="logo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         /* Custom styles */
@@ -23,7 +24,7 @@
         }
 
         header h1 {
-            font-size: 24px; /* Corrected font size */
+            font-size: 1px;
             margin: 10px 0;
         }
 
@@ -118,42 +119,50 @@
     <section id="about">
         <h2>About Me</h2>
         <div class="border">
-            <p id="about-description">Loading...</p>
+            <p>During my experience, I've honed skills in web scraping, data analysis, machine learning, and predictive modeling. I've also mastered PySpark, Snowflake, AWS, and automation, alongside expertise in Jira Zephyr API integration, Azure AI Studio, and OpenAI. These skills empower me to effectively tackle complex data challenges.</p>
         </div>
     </section>
 
     <section id="experience">
         <h2>Work Experience</h2>
-        <div class="border" id="experience-list">
-            <!-- Experience data will be inserted here -->
+        <div class="border">
+            <h3>Data Science Intern - Globussoft Technologies</h3>
+            <p>During my 10-month tenure as a Data Science Intern at Globussoft Technologies, I honed my expertise in web scraping, data analysis, machine learning, and predictive modeling. My contributions to various projects significantly improved data-driven decision-making processes, enabling more informed choices. This hands-on experience solidified my proficiency in Python, empowering me to tackle complex data challenges effectively.</p>
+            <br><br>
+            <h3>Data Engineer Intern - Techment Technology</h3>
+            <p>As a Data Engineer Intern at Techment Technology, I refined skills in PySpark, Snowflake, AWS, enhancing data-driven decision-making. My contributions improved project outcomes, fostering informed choices. This experience fortified Python proficiency, empowering me to adeptly address intricate data challenges.</p>
+            <br><br>
+            <h3>Python Developer - PeopleFlow</h3>
+            <p>At PeopleFlow, as a full-time employee, I honed skills in automation, Jira Zephyr API integration, Azure AI Studio, and OpenAI strengthening data-driven decision-making. My contributions enhanced project outcomes, promoting informed choices. This experience bolstered Python expertise, enabling me to effectively tackle complex data challenges.</p>
         </div>
     </section>
 
     <section id="skill">
         <h2>Technical Skills</h2>
         <div class="border">
-            <ul id="skills-list">
-                <!-- Skills data will be inserted here -->
-            </ul>
+            <p>Python, Pandas, NumPy, Matplotlib, Scipy, SQL, Exploratory Data Analysis, Data Manipulation, Data Visualization, Machine Learning, Natural Language Processing (NLP), Web Scraping, OpenCV (Image Processing),PySpark, Snowflake, AWS,automation, Jira Zephyr API integration, Azure AI Studio, and OpenAI.</p>
         </div>
     </section>
 
     <section id="certification">
         <h2>Certification</h2>
-        <div class="border" id="certifications-list">
-            <!-- Certifications data will be inserted here -->
+        <div class="border">
+            <p><a href="python_basic certificate_copy.pdf">Python Basic Certificate<br>By Hackerrank</a></p>
+            <p><a href="KPMG.pdf">Data Analytics Consulting Virtual Internship<br>By KPMG</a></p>
+            <p><a href="1000008273 (3403×2438).jpg">Python For Data Science <br>By National Programme on Technology Enhanced Learning</a></p>
+            <p><a href="UC-3aac104e-5413-447b-99f8-ef296c2b13f5.pdf">100 Days Of Code - The Complete Python Pro Bootcamp For 2023 <br> By Dr. Angela Yu</a></p>
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
         <div class="border">
-            <p id="contact-email"></p>
-            <p id="contact-phone"></p>
-            <p>LinkedIn: <a id="contact-linkedin" href="" target="_blank">LinkedIn Profile</a></p>
-            <p>WhatsApp: <a id="contact-whatsapp" href="" target="_blank">WhatsApp Chat</a></p>
-            <p>GitHub: <a id="contact-github" href="" target="_blank">GitHub Repositories</a></p>
-            <p><a id="contact-resume" href="" target="_blank">Download Resume</a></p>
+            <p>Email: syogesh942@gmail.com</p>
+            <p>+91 7987183809</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/syogesh942/">LinkedIn Profile</a></p>
+            <p>WhatsApp: <a href="https://wa.me/+917987183809">WhatsApp Chat</a></p>
+            <p>GitHub: <a href="https://github.com/syogesh942">GitHub Repositories</a></p>
+            <p><a href="Resume-Yogesh-Sharma.pdf">Download Resume</a></p>
         </div>
     </section>
 
@@ -170,60 +179,6 @@
             });
             document.getElementById(sectionId).style.display = 'block';
         }
-
-        // Fetch data from JSON and update the content
-        async function fetchData() {
-            try {
-                const response = await fetch('data.json');
-                const data = await response.json();
-                
-                // Update About section
-                document.getElementById('about-description').textContent = data.about.description;
-
-                // Update Experience section
-                const experienceList = document.getElementById('experience-list');
-                data.experience.forEach(item => {
-                    const experienceItem = document.createElement('div');
-                    experienceItem.innerHTML = `
-                        <h3>${item.title} - ${item.company}</h3>
-                        <p>${item.description}</p>
-                    `;
-                    experienceList.appendChild(experienceItem);
-                });
-
-                // Update Skills section
-                const skillsList = document.getElementById('skills-list');
-                data.skills.forEach(skill => {
-                    const skillItem = document.createElement('li');
-                    skillItem.textContent = skill;
-                    skillsList.appendChild(skillItem);
-                });
-
-                // Update Certifications section
-                const certificationsList = document.getElementById('certifications-list');
-                data.certifications.forEach(cert => {
-                    const certItem = document.createElement('p');
-                    certItem.innerHTML = `<a href="${cert.link}" target="_blank">${cert.title}<br>By ${cert.organization}</a>`;
-                    certificationsList.appendChild(certItem);
-                });
-
-                // Update Contact section
-                document.getElementById('contact-email').textContent = `Email: ${data.contact.email}`;
-                document.getElementById('contact-phone').textContent = data.contact.phone;
-                document.getElementById('contact-linkedin').href = data.contact.linkedin;
-                document.getElementById('contact-whatsapp').href = data.contact.whatsapp;
-                document.getElementById('contact-github').href = data.contact.github;
-                document.getElementById('contact-resume').href = data.contact.resume;
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        // Load data when the page is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchData();
-            showSection('about'); // Show About section by default
-        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
