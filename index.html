@@ -455,33 +455,27 @@
         <p>&copy; 2025 Yogesh Kumar Sharma</p>
     </footer>
 
-    <script>
+<script>
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.nav-links');
         const navLinks = document.querySelectorAll('.nav-links li');
 
-// Toggle the menu and animations
-function toggleMenu() {
-    // Toggle the active class on the navigation menu
-    nav.classList.toggle('active');
-    // Toggle the toggle class on the burger menu
-    burger.classList.toggle('toggle');
+        function toggleMenu() {
+            nav.classList.toggle('active');
+            burger.classList.toggle('toggle');
 
-    // Loop through each navigation link
-    navLinks.forEach((link, index) => {
-        // Toggle animation on each link
-        if (link.style.animation) {
-            link.style.animation = ''; // Reset animation if it exists
-        } else {
-            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+                link.classList.toggle('fade-in');
+            });
         }
-        // Toggle fade-in class for additional effect
-        link.classList.toggle('fade-in');
-    });
-}
 
-// Add event listener to the burger for the toggleMenu function
-burger.addEventListener('click', toggleMenu);
+        burger.addEventListener('click', toggleMenu);
+
         // Close mobile menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -544,7 +538,7 @@ burger.addEventListener('click', toggleMenu);
                 smoothScroll(this.getAttribute('href'), 1000);
             });
         });
-    </script>
+</script>
 </body>
 </html>
 
