@@ -8,25 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1877F2;
-            --secondary-color: #42b72a;
+            --primary-color: #4a4aff;
+            --secondary-color: #ff4a4a;
             --text-color: #333;
-            --bg-color: #f0f2f5;
+            --bg-color: #f5f5f5;
             --card-bg: #ffffff;
             --header-bg: #ffffff;
             --footer-bg: #ffffff;
-            --nav-bg: #ffffff;
         }
 
         .dark-mode {
-            --primary-color: #1877F2;
-            --secondary-color: #42b72a;
+            --primary-color: #7b79fc;
+            --secondary-color: #fc7979;
             --text-color: #f5f5f5;
-            --bg-color: #18191a;
-            --card-bg: #242526;
-            --header-bg: #242526;
-            --footer-bg: #242526;
-            --nav-bg: #242526;
+            --bg-color: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --header-bg: #2a2a2a;
+            --footer-bg: #2a2a2a;
         }
 
         * {
@@ -131,7 +129,7 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(24, 119, 242, 0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .experience-item {
@@ -152,7 +150,7 @@
         }
 
         .skill-item {
-            background-color: var(--primary-color);
+            background-color: #6366F1;
             color: #ffffff;
             padding: 0.75rem 1rem;
             border-radius: 9999px;
@@ -164,12 +162,6 @@
             align-items: center;
             justify-content: center;
             min-height: 2.5rem;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .skill-item:hover {
-            background-color: #1464d4;
-            transform: translateY(-2px);
         }
 
         .certifications-list {
@@ -240,14 +232,18 @@
                 right: -100%;
                 top: 5rem;
                 flex-direction: column;
-                background-color: var(--nav-bg);
+                background-color: var(--header-bg);
                 width: 100%;
                 text-align: center;
                 transition: 0.5s ease;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
                 padding: 20px 0;
                 height: calc(100vh - 5rem);
                 overflow-y: auto;
+            }
+
+            .nav-links.active {
+                right: 0;
             }
 
             .nav-item {
@@ -333,10 +329,6 @@
                 opacity: 1;
                 transform: translateX(0);
             }
-        }
-
-        header, .card, .nav-links {
-            transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
         }
     </style>
 </head>
@@ -455,7 +447,7 @@
         <p>&copy; 2025 Yogesh Kumar Sharma</p>
     </footer>
 
-<script>
+    <script>
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.nav-links');
         const navLinks = document.querySelectorAll('.nav-links li');
@@ -538,7 +530,7 @@
                 smoothScroll(this.getAttribute('href'), 1000);
             });
         });
-</script>
+    </script>
 </body>
 </html>
 
