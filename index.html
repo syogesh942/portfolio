@@ -460,22 +460,28 @@
         const nav = document.querySelector('.nav-links');
         const navLinks = document.querySelectorAll('.nav-links li');
 
-        function toggleMenu() {
-            nav.classList.toggle('active');
-            burger.classList.toggle('toggle');
+// Toggle the menu and animations
+function toggleMenu() {
+    // Toggle the active class on the navigation menu
+    nav.classList.toggle('active');
+    // Toggle the toggle class on the burger menu
+    burger.classList.toggle('toggle');
 
-            navLinks.forEach((link, index) => {
-                if (link.style.animation) {
-                    link.style.animation = '';
-                } else {
-                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-                }
-                link.classList.toggle('fade-in');
-            });
+    // Loop through each navigation link
+    navLinks.forEach((link, index) => {
+        // Toggle animation on each link
+        if (link.style.animation) {
+            link.style.animation = ''; // Reset animation if it exists
+        } else {
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
         }
+        // Toggle fade-in class for additional effect
+        link.classList.toggle('fade-in');
+    });
+}
 
-        burger.addEventListener('click', toggleMenu);
-
+// Add event listener to the burger for the toggleMenu function
+burger.addEventListener('click', toggleMenu);
         // Close mobile menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
