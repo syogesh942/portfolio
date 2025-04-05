@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yogesh's Portfolio</title>
     <link rel="icon" href="logo.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* CSS Variables for easy theming */
         :root {
@@ -47,7 +48,9 @@
         }
 
         /* Reset and Base Styles */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -85,7 +88,12 @@
         }
 
         /* Typography */
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             line-height: 1.2;
             margin-bottom: 1rem;
             font-weight: 600;
@@ -251,6 +259,105 @@
             border-radius: 3px;
         }
 
+        /* Hero Section */
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .typing-text {
+            border-right: 3px solid var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--primary-color)
+            }
+        }
+
         /* Main Content */
         main {
             padding: 2rem 0;
@@ -304,6 +411,14 @@
         .experience-item {
             position: relative;
             margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .experience-item.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .experience-item::before {
@@ -317,6 +432,12 @@
             background-color: var(--secondary-color);
             border: 3px solid var(--primary-color);
             z-index: 1;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .experience-item:hover::before {
+            transform: scale(1.2);
+            background-color: var(--primary-color);
         }
 
         .experience-date {
@@ -346,12 +467,69 @@
             align-items: center;
             justify-content: center;
             min-height: 2.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .skill-item:hover {
             background-color: var(--primary-hover);
             transform: translateY(-3px);
             box-shadow: var(--shadow);
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .skill-item:hover::before {
+            left: 100%;
+        }
+
+        /* Skill Bars */
+        .skill-bars {
+            margin-top: 2rem;
+        }
+
+        .skill-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-weight: 500;
+        }
+
+        .skill-percent {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .skill-progress {
+            height: 10px;
+            background-color: rgba(79, 70, 229, 0.1);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 9999px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
         }
 
         /* Certifications */
@@ -363,6 +541,14 @@
             margin-bottom: 1rem;
             padding-left: 1.5rem;
             position: relative;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .certifications-list li.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .certifications-list li::before {
@@ -381,6 +567,153 @@
 
         .certifications-list a:hover {
             border-bottom: 1px solid var(--primary-hover);
+        }
+
+        /* Projects Section */
+        .projects-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--primary-color);
+            border-radius: 9999px;
+        }
+
+        .project-desc {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-title {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
         /* Contact Section */
@@ -439,6 +772,53 @@
             color: var(--primary-color);
         }
 
+        /* Contact Form */
+        .contact-form {
+            margin-top: 2rem;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
         /* Footer */
         footer {
             background-color: var(--footer-bg);
@@ -478,6 +858,74 @@
             transform: translateY(-3px);
         }
 
+        /* Theme Customizer */
+        .theme-customizer {
+            position: fixed;
+            top: 50%;
+            right: -250px;
+            transform: translateY(-50%);
+            width: 250px;
+            background-color: var(--card-bg);
+            border-radius: var(--radius) 0 0 var(--radius);
+            box-shadow: var(--shadow-md);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-customizer.open {
+            right: 0;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius) 0 0 var(--radius);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-option {
+            margin-bottom: 1.5rem;
+        }
+
+        .theme-option h4 {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .color-option:hover,
+        .color-option.active {
+            transform: scale(1.1);
+            border-color: var(--text-color);
+        }
+
+        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -508,20 +956,104 @@
             transform: translateY(-3px);
         }
 
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(79, 70, 229, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         /* Animation Classes */
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         .animate {
             animation: fadeIn 0.6s ease forwards;
+        }
+
+        .animate-left {
+            animation: slideInLeft 0.6s ease forwards;
+        }
+
+        .animate-right {
+            animation: slideInRight 0.6s ease forwards;
+        }
+
+        .animate-zoom {
+            animation: zoomIn 0.6s ease forwards;
         }
 
         .delay-1 {
@@ -552,6 +1084,14 @@
 
             h2 {
                 font-size: 1.75rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
             }
 
             .section-padding {
@@ -629,12 +1169,28 @@
                 font-size: 1.5rem;
             }
 
+            .hero-title {
+                font-size: 2rem;
+            }
+
             .section-padding {
                 padding: 3rem 0;
             }
 
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -651,6 +1207,14 @@
                 font-size: 1.35rem;
             }
 
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
             .card {
                 padding: 1.5rem;
             }
@@ -665,11 +1229,24 @@
                 width: 40px;
                 height: 40px;
             }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
     <header>
         <div class="container">
             <nav>
@@ -688,6 +1265,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#certifications">Certifications</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -697,12 +1275,59 @@
 
     <div class="overlay"></div>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm <span class="text-gradient">Yogesh Kumar Sharma</span></h1>
+                <h2 class="hero-subtitle typing-effect">Python Engineer</h2>
+                <p>I specialize in developing robust applications and extracting valuable insights from complex data.
+                    With expertise in Python, Django, AWS, and data analysis, I'm passionate about solving real-world
+                    problems through technology.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="Resume-Yogesh-Sharma.pdf" class="btn btn-outline" download>Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main>
         <div class="container">
             <section id="about" class="card">
                 <h2>About Me</h2>
-                <p>During my experience, I've honed skills in web development, django, API, web scraping, data analysis, machine learning, and predictive modeling. I've also mastered PySpark, Snowflake, AWS, and automation, alongside expertise in Jira Zephyr
-                    API integration, Azure AI Studio, and OpenAI. These skills empower me to effectively tackle complex data challenges.</p>
+                <p>During my experience, I've honed skills in web development, django, API, web scraping, data analysis,
+                    machine learning, and predictive modeling. I've also mastered PySpark, Snowflake, AWS, and
+                    automation, alongside expertise in Jira Zephyr
+                    API integration, Azure AI Studio, and OpenAI. These skills empower me to effectively tackle complex
+                    data challenges.</p>
+            </section>
+
+            <!-- Stats Section -->
+            <section id="stats">
+                <h2>Professional Stats</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">💼</div>
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-title">Companies Worked With</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🚀</div>
+                        <div class="stat-number" data-count="20">0</div>
+                        <div class="stat-title">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-number" data-count="3">0</div>
+                        <div class="stat-title">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-number" data-count="4">0</div>
+                        <div class="stat-title">Certifications</div>
+                    </div>
+                </div>
             </section>
 
             <section id="experience">
@@ -713,48 +1338,63 @@
                             <div class="experience-date">May 2024 - Present</div>
                             <h3>Python Developer</h3>
                             <h4>Gmware</h4>
-                            <p>At Gmware, as a full-time employee, I developed expertise in managing APIs to retrieve data from e-commerce platforms and ensuring data quality through robust validation processes. I gained proficiency in AWS services, including CloudWatch
-                                and Lambda, to streamline monitoring and automate workflows. Additionally, I managed proxies to handle requests effectively, mitigating blocking issues and optimizing resource utilization by minimizing bad requests.</p>
+                            <p>At Gmware, as a full-time employee, I developed expertise in managing APIs to retrieve
+                                data from e-commerce platforms and ensuring data quality through robust validation
+                                processes. I gained proficiency in AWS services, including CloudWatch
+                                and Lambda, to streamline monitoring and automate workflows. Additionally, I managed
+                                proxies to handle requests effectively, mitigating blocking issues and optimizing
+                                resource utilization by minimizing bad requests.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
                         <div class="card">
                             <div class="experience-date">Jan 2024 - Mar 2024</div>
                             <h3>Python Developer</h3>
                             <h4>PeopleFlow</h4>
-                            <p>At PeopleFlow, as a full-time employee, I honed skills in automation, Jira Zephyr API integration, Azure AI Studio, and OpenAI strengthening data-driven decision-making. My contributions enhanced project outcomes, promoting informed choices.
-                                This experience bolstered Python expertise, enabling me to effectively tackle complex data challenges.</p>
+                            <p>At PeopleFlow, as a full-time employee, I honed skills in automation, Jira Zephyr API
+                                integration, Azure AI Studio, and OpenAI strengthening data-driven decision-making. My
+                                contributions enhanced project outcomes, promoting informed choices.
+                                This experience bolstered Python expertise, enabling me to effectively tackle complex
+                                data challenges.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
                         <div class="card">
                             <div class="experience-date">Oct 2023 - Jan 2024</div>
                             <h3>Data Engineer Intern</h3>
                             <h4>Techment Technology</h4>
-                            <p>As a Data Engineer Intern at Techment Technology, I refined skills in PySpark, Snowflake, AWS, enhancing data-driven decision-making. My contributions improved project outcomes, fostering informed choices. This experience fortified Python
+                            <p>As a Data Engineer Intern at Techment Technology, I refined skills in PySpark, Snowflake,
+                                AWS, enhancing data-driven decision-making. My contributions improved project outcomes,
+                                fostering informed choices. This experience fortified Python
                                 proficiency, empowering me to adeptly address intricate data challenges.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
                         <div class="card">
                             <div class="experience-date">Sep 2023</div>
                             <h3>Data Analytics Consulting Virtual Internship</h3>
                             <h4>KPMG India</h4>
-                            <p>I have completed my virtual internship in Data Analytics Consulting Virtual Internship at KPMG. It was definitely a very enriching experience to be a part of this virtual internship program at KPMG. I have accomplished following task in
+                            <p>I have completed my virtual internship in Data Analytics Consulting Virtual Internship at
+                                KPMG. It was definitely a very enriching experience to be a part of this virtual
+                                internship program at KPMG. I have accomplished following task in
                                 this internship Data Quality assessment, Data Insights, Presentation.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
                         <div class="card">
                             <div class="experience-date">Sep 2022 - Jul 2023</div>
                             <h3>Data Science Intern</h3>
                             <h4>Globussoft Technologies</h4>
-                            <p>During my 11-month tenure as a Data Science Intern at Globussoft Technologies, I honed my expertise in web scraping, data analysis, machine learning, and predictive modeling. My contributions to various projects significantly improved
-                                data-driven decision-making processes, enabling more informed choices. This hands-on experience solidified my proficiency in Python, empowering me to tackle complex data challenges effectively.</p>
+                            <p>During my 10-month tenure as a Data Science Intern at Globussoft Technologies, I honed my
+                                expertise in web scraping, data analysis, machine learning, and predictive modeling. My
+                                contributions to various projects significantly improved
+                                data-driven decision-making processes, enabling more informed choices. This hands-on
+                                experience solidified my proficiency in Python, empowering me to tackle complex data
+                                challenges effectively.</p>
                         </div>
                     </div>
                 </div>
@@ -789,6 +1429,119 @@
                     <div class="skill-item">OpenAI</div>
                     <div class="skill-item">Proxies</div>
                 </div>
+
+                <div class="skill-bars">
+                    <h3>Core Competencies</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Python Development</span>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-width="95"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Web Scraping</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Machine Learning</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-width="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Data Engineering</span>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-width="70"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Cloud Services (AWS)</span>
+                            <span class="skill-percent">65%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-width="65"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects">
+                <h2>Featured Projects</h2>
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <!-- <button class="filter-btn" data-filter="python">Python</button> -->
+                    <!-- <button class="filter-btn" data-filter="data">Data Analysis</button>
+                    <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button> -->
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-category="python web">
+                        <img src="/QR.jpg?height=200&width=400" alt="Text To QR Message Generator"
+                            class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">Text To QR Message Generator</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Requests</span>
+                                <span class="project-tag">API</span>
+                            </div>
+                            <p class="project-desc">Developed a robust system to convert text in to QR to hide message.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/syogesh942/Text-to-QR-msg-generator" class="project-link">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data ml">
+                        <img src="/youtube.png?height=200&width=400" alt="Sentiment Analysis"
+                            class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">Sentiment Analysis</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Selenium</span>
+                                <span class="project-tag">Machine Learning</span>
+                            </div>
+                            <p class="project-desc">Developed project to scrape Comments from YouTube for Sentiment 
+                                Analysis using Machine Learning and Selenium.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/syogesh942/YouTube-Comment-Sentiment-Analysis-using-Selenium-and-AFINN" class="project-link">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="python data">
+                        <img src="/weather.jpg?height=200&width=400" alt="Weather API"
+                            class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">Automated Data Pipeline</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Django</span>
+                                <span class="project-tag">Data Cleaning</span>
+                            </div>
+                            <p class="project-desc">Built an end-to-end project to know the weather of any city, Weather update
+                                extracted by API.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/syogesh942/weather-API" class="project-link">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section id="certifications" class="card">
@@ -796,8 +1549,10 @@
                 <ul class="certifications-list">
                     <li><a href="python_basic certificate_copy.pdf">Python Basic Certificate by Hackerrank</a></li>
                     <li><a href="KPMG.pdf">Data Analytics Consulting Virtual Internship by KPMG</a></li>
-                    <li><a href="1000008273 (3403×2438).jpg">Python For Data Science by National Programme on Technology Enhanced Learning</a></li>
-                    <li><a href="UC-3aac104e-5413-447b-99f8-ef296c2b13f5.pdf">100 Days Of Code - The Complete Python Pro Bootcamp For 2023 by Dr. Angela Yu</a></li>
+                    <li><a href="1000008273 (3403×2438).jpg">Python For Data Science by National Programme on Technology
+                            Enhanced Learning</a></li>
+                    <li><a href="UC-3aac104e-5413-447b-99f8-ef296c2b13f5.pdf">100 Days Of Code - The Complete Python Pro
+                            Bootcamp For 2023 by Dr. Angela Yu</a></li>
                 </ul>
             </section>
 
@@ -806,8 +1561,11 @@
                 <div class="contact-grid">
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                         </div>
@@ -816,11 +1574,15 @@
                             <a href="mailto:syogesh942@gmail.com">syogesh942@gmail.com</a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
                             </svg>
                         </div>
                         <div class="contact-info">
@@ -828,25 +1590,34 @@
                             <a href="tel:+917987183809">+91 7987183809</a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
                                 <rect x="2" y="9" width="4" height="12"></rect>
                                 <circle cx="4" cy="4" r="2"></circle>
                             </svg>
                         </div>
                         <div class="contact-info">
                             <h4>LinkedIn</h4>
-                            <a href="https://www.linkedin.com/in/syogesh942/" target="_blank">linkedin.com/in/syogesh942</a>
+                            <a href="https://www.linkedin.com/in/syogesh942/"
+                                target="_blank">linkedin.com/in/syogesh942</a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
                             </svg>
                         </div>
                         <div class="contact-info">
@@ -854,10 +1625,12 @@
                             <a href="https://github.com/syogesh942" target="_blank">github.com/syogesh942</a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -868,11 +1641,15 @@
                             <a href="Resume-Yogesh-Sharma.pdf" target="_blank">Download Resume</a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                </path>
                             </svg>
                         </div>
                         <div class="contact-info">
@@ -881,9 +1658,75 @@
                         </div>
                     </div>
                 </div>
-            </section>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3>Send Me a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Your Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                                <div class="error-message"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                            <div class="error-message"></div>
+                        </div>
+                        <button type="submit" id="button" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+        </div>
+        </section>
         </div>
     </main>
+
+    <!-- Theme Customizer -->
+    <div class="theme-customizer">
+        <button class="theme-toggle" aria-label="Toggle theme customizer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+        </button>
+        <h3>Customize Theme</h3>
+        <div class="theme-option">
+            <h4>Primary Color</h4>
+            <div class="color-options">
+                <div class="color-option active" style="background-color: #4f46e5;" data-color="#4f46e5"
+                    data-name="indigo"></div>
+                <div class="color-option" style="background-color: #2563eb;" data-color="#2563eb" data-name="blue">
+                </div>
+                <div class="color-option" style="background-color: #10b981;" data-color="#10b981" data-name="emerald">
+                </div>
+                <div class="color-option" style="background-color: #ef4444;" data-color="#ef4444" data-name="red"></div>
+                <div class="color-option" style="background-color: #f59e0b;" data-color="#f59e0b" data-name="amber">
+                </div>
+            </div>
+        </div>
+        <div class="theme-option">
+            <h4>Font Size</h4>
+            <div class="range-slider">
+                <input type="range" min="14" max="20" value="16" class="slider" id="fontSizeSlider">
+                <span id="fontSizeValue">16px</span>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -891,20 +1734,27 @@
                 <p>&copy; 2025 Yogesh Kumar Sharma. All rights reserved.</p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/syogesh942/" class="social-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
                             <rect x="2" y="9" width="4" height="12"></rect>
                             <circle cx="4" cy="4" r="2"></circle>
                         </svg>
                     </a>
                     <a href="https://github.com/syogesh942" class="social-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
                         </svg>
                     </a>
                     <a href="mailto:syogesh942@gmail.com" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
                     </a>
@@ -914,12 +1764,24 @@
     </footer>
 
     <a href="#" class="back-to-top" aria-label="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </a>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">emailjs.init('i1CG4NYyXYIITaDiu')</script>
     <script>
+        // Preloader
+        window.addEventListener('load', function () {
+            const preloader = document.querySelector('.preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
         // Toggle mobile menu
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.nav-links');
@@ -945,25 +1807,127 @@
             });
         });
 
+        // Typing effect
+        function typeEffect(element, text, speed = 100, delay = 1000) {
+            let i = 0;
+            element.textContent = '';
+
+            setTimeout(() => {
+                const typing = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                        setTimeout(() => {
+                            element.textContent = '';
+                            i = 0;
+                            typeEffect(element, text, speed, 0);
+                        }, 2000);
+                    }
+                }, speed);
+            }, delay);
+        }
+
+        const typingElement = document.querySelector('.typing-effect');
+        if (typingElement) {
+            const roles = ['Python Developer', 'Web Scraping Expert', 'Machine Learning Enthusiast', 'Data Engineer'];
+            let currentRole = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const role = roles[currentRole];
+                if (isDeleting) {
+                    typingElement.textContent = role.substring(0, charIndex--);
+                } else {
+                    typingElement.textContent = role.substring(0, charIndex++);
+                }
+
+                if (!isDeleting && charIndex === role.length) {
+                    setTimeout(() => isDeleting = true, 1500);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    currentRole = (currentRole + 1) % roles.length;
+                }
+
+                const speed = isDeleting ? 50 : 100;
+                setTimeout(type, speed);
+            }
+
+            type();
+        }
+
         // Scroll animations
         function handleScroll() {
             const sections = document.querySelectorAll('section');
+            const experienceItems = document.querySelectorAll('.experience-item');
+            const certItems = document.querySelectorAll('.certifications-list li');
+            const projectCards = document.querySelectorAll('.project-card');
             const backToTop = document.querySelector('.back-to-top');
-            
+            const skillBars = document.querySelectorAll('.skill-progress-bar');
+
             // Show/hide back to top button
             if (window.scrollY > 300) {
                 backToTop.classList.add('visible');
             } else {
                 backToTop.classList.remove('visible');
             }
-            
+
             // Animate sections on scroll
             sections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
-                
+
                 if (sectionTop < windowHeight * 0.75) {
                     section.classList.add('visible');
+                }
+            });
+
+            // Animate experience items
+            experienceItems.forEach((item, index) => {
+                const itemTop = item.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (itemTop < windowHeight * 0.85) {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // Animate certification items
+            certItems.forEach((item, index) => {
+                const itemTop = item.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (itemTop < windowHeight * 0.85) {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+
+            // Animate project cards
+            projectCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (cardTop < windowHeight * 0.85) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // Animate skill bars
+            skillBars.forEach(bar => {
+                const barTop = bar.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (barTop < windowHeight * 0.85) {
+                    const width = bar.getAttribute('data-width') + '%';
+                    bar.style.width = width;
                 }
             });
         }
@@ -973,11 +1937,180 @@
             handleScroll();
             // Add initial animation to first section
             document.querySelector('section').classList.add('visible');
+
+            // Animate skill bars on load
+            setTimeout(() => {
+                const skillBars = document.querySelectorAll('.skill-progress-bar');
+                skillBars.forEach(bar => {
+                    const width = bar.getAttribute('data-width') + '%';
+                    bar.style.width = width;
+                });
+            }, 1000);
+        });
+
+        // Counter animation
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+
+            function updateCount() {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    return;
+                }
+                element.textContent = Math.floor(start);
+                requestAnimationFrame(updateCount);
+            }
+
+            updateCount();
+        }
+
+        function startCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                animateCounter(counter, target);
+            });
+        }
+
+        // Start counters when stats section is in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Project filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 100);
+                    } else {
+                        card.classList.remove('visible');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('button');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    let isValid = true;
+                    const name = document.getElementById('name');
+                    const email = document.getElementById('email');
+                    const subject = document.getElementById('subject');
+                    const message = document.getElementById('message');
+
+                    // Reset error messages
+                    document.querySelectorAll('.error-message').forEach(el => {
+                        el.textContent = '';
+                    });
+
+                    // Validate name
+                    if (name.value.trim() === '') {
+                        showError(name, 'Name is required');
+                        isValid = false;
+                    }
+
+                    // Validate email
+                    if (email.value.trim() === '') {
+                        showError(email, 'Email is required');
+                        isValid = false;
+                    } else if (!isValidEmail(email.value)) {
+                        showError(email, 'Please enter a valid email');
+                        isValid = false;
+                    }
+
+                    // Validate subject
+                    if (subject.value.trim() === '') {
+                        showError(subject, 'Subject is required');
+                        isValid = false;
+                    }
+
+                    // Validate message
+                    if (message.value.trim() === '') {
+                        showError(message, 'Message is required');
+                        isValid = false;
+                    }
+
+                    if (isValid) {
+                        const originalText = submitBtn.textContent;
+                        submitBtn.textContent = 'Sending...';
+                        submitBtn.disabled = true;
+
+                        const serviceID = 'service_q9x3syc';
+                        const templateID = 'template_8k0amu2';
+
+                        emailjs.sendForm(serviceID, templateID, contactForm)
+                            .then(() => {
+                                alert('Thank you for your message! I will get back to you soon.');
+                                contactForm.reset();
+                                submitBtn.textContent = originalText;
+                                submitBtn.disabled = false;
+                            }, (err) => {
+                                alert('Failed to send message.\n' + JSON.stringify(err));
+                                submitBtn.textContent = originalText;
+                                submitBtn.disabled = false;
+                            });
+                    }
+                });
+
+                function showError(input, message) {
+                    const errorElement = input.nextElementSibling;
+                    errorElement.textContent = message;
+                    errorElement.style.color = 'red';
+                    errorElement.style.fontSize = '0.8rem';
+                    errorElement.style.marginTop = '0.25rem';
+                    input.style.borderColor = 'red';
+
+                    input.addEventListener('input', function () {
+                        errorElement.textContent = '';
+                        input.style.borderColor = '';
+                    }, { once: true });
+                }
+
+                function isValidEmail(email) {
+                    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return re.test(String(email).toLowerCase());
+                }
+            }
         });
 
         // Dark mode toggle
         const darkModeToggle = document.querySelector('.dark-mode-toggle');
-        
+
         // Check for saved theme preference or use preferred color scheme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -986,10 +2119,10 @@
         } else {
             darkModeToggle.textContent = '🌙';
         }
-        
+
         darkModeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            
+
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
                 darkModeToggle.textContent = '☀️';
@@ -999,14 +2132,71 @@
             }
         });
 
+        // Theme customizer
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeCustomizer = document.querySelector('.theme-customizer');
+
+        themeToggle.addEventListener('click', () => {
+            themeCustomizer.classList.toggle('open');
+        });
+
+        // Color options
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const color = option.getAttribute('data-color');
+                document.documentElement.style.setProperty('--primary-color', color);
+
+                // Update active state
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+
+                // Save preference
+                localStorage.setItem('primary-color', color);
+            });
+        });
+
+        // Font size slider
+        const fontSizeSlider = document.getElementById('fontSizeSlider');
+        const fontSizeValue = document.getElementById('fontSizeValue');
+
+        fontSizeSlider.addEventListener('input', () => {
+            const size = fontSizeSlider.value;
+            fontSizeValue.textContent = size + 'px';
+            document.documentElement.style.fontSize = size + 'px';
+
+            // Save preference
+            localStorage.setItem('font-size', size);
+        });
+
+        // Load saved preferences
+        const savedColor = localStorage.getItem('primary-color');
+        if (savedColor) {
+            document.documentElement.style.setProperty('--primary-color', savedColor);
+            colorOptions.forEach(opt => {
+                if (opt.getAttribute('data-color') === savedColor) {
+                    opt.classList.add('active');
+                } else {
+                    opt.classList.remove('active');
+                }
+            });
+        }
+
+        const savedFontSize = localStorage.getItem('font-size');
+        if (savedFontSize) {
+            fontSizeSlider.value = savedFontSize;
+            fontSizeValue.textContent = savedFontSize + 'px';
+            document.documentElement.style.fontSize = savedFontSize + 'px';
+        }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
