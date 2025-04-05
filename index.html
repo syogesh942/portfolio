@@ -6,34 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yogesh's Portfolio</title>
     <link rel="icon" href="logo.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables for easy theming */
         :root {
-            --primary-color: #1877F2;
-            --secondary-color: #42b72a;
-            --text-color: #333;
-            --bg-color: #f0f2f5;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary-color: #10b981;
+            --secondary-hover: #059669;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #f9fafb;
             --card-bg: #ffffff;
-            --header-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
             --footer-bg: #ffffff;
-            --nav-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+            --radius: 0.5rem;
         }
 
+        /* Dark Mode Variables */
         .dark-mode {
-            --primary-color: #1877F2;
-            --secondary-color: #42b72a;
-            --text-color: #f5f5f5;
-            --bg-color: #18191a;
-            --card-bg: #242526;
-            --header-bg: #242526;
-            --footer-bg: #242526;
-            --nav-bg: #242526;
+            --primary-color: #6366f1;
+            --primary-hover: #818cf8;
+            --secondary-color: #10b981;
+            --secondary-hover: #34d399;
+            --text-color: #f9fafb;
+            --text-light: #d1d5db;
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+            --header-bg: rgba(31, 41, 55, 0.95);
+            --footer-bg: #1f2937;
+            --border-color: #374151;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
         }
 
-        * {
+        /* Reset and Base Styles */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
         }
 
         body {
@@ -41,24 +63,85 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            transition: var(--transition);
+            overflow-x: hidden;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Layout */
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1.5rem;
         }
 
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* Header & Navigation */
         header {
             background-color: var(--header-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: background-color 0.3s;
-            padding-bottom: 1rem; /* Add extra padding at the bottom of the header */
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
 
         nav {
@@ -73,6 +156,16 @@
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -84,253 +177,493 @@
         .nav-links a {
             color: var(--text-color);
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
+            background-color: rgba(79, 70, 229, 0.1);
         }
 
-        .burger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        main {
-            padding: 3rem 0; /* Increase top padding of main content */
-        }
-
-        section {
-            margin-bottom: 3rem;
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .experience-item {
-            margin-bottom: 2rem;
-        }
-
-        .experience-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1.25rem;
-            padding: 0.5rem;
-        }
-
-        .skill-item {
-            background-color: #6366F1;
-            color: #ffffff;
-            padding: 0.75rem 1rem;
-            border-radius: 9999px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-            width: 100%;
+        .nav-controls {
             display: flex;
             align-items: center;
-            justify-content: center;
-            min-height: 2.5rem;
-        }
-
-        .certifications-list {
-            list-style-type: none;
-        }
-
-        .certifications-list li {
-            margin-bottom: 1rem;
-        }
-
-        .certifications-list a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .certifications-list a:hover {
-            color: var(--secondary-color);
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: var(--secondary-color);
-        }
-
-        footer {
-            background-color: var(--footer-bg);
-            color: var(--text-color);
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
         }
 
         .dark-mode-toggle {
             background: none;
             border: none;
             color: var(--text-color);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .dark-mode-toggle:hover {
             color: var(--primary-color);
+            background-color: rgba(79, 70, 229, 0.1);
         }
 
-        @media screen and (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                right: -100%;
-                top: 5rem;
-                flex-direction: column;
-                background-color: var(--header-bg);
-                width: 100%;
-                text-align: center;
-                transition: 0.5s ease;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-                padding: 20px 0;
-                height: calc(100vh - 5rem);
-                overflow-y: auto;
-            }
+        .burger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 1001;
+        }
 
-            .nav-links.active {
-                right: 0;
-            }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px auto;
+            transition: var(--transition);
+            border-radius: 3px;
+        }
 
-            .nav-item {
-                margin: 2.5rem 0;
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.5rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            border: 3px solid var(--primary-color);
+            z-index: 1;
+        }
+
+        .experience-date {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 2.5rem;
+        }
+
+        .skill-item:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Certifications */
+        .certifications-list {
+            list-style-type: none;
+        }
+
+        .certifications-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .certifications-list li::before {
+            content: '🏆';
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+        }
+
+        .certifications-list a {
+            font-weight: 500;
+            display: inline-block;
+            padding: 0.25rem 0;
+            border-bottom: 1px dashed var(--primary-color);
+        }
+
+        .certifications-list a:hover {
+            border-bottom: 1px solid var(--primary-hover);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: var(--radius);
+            background-color: rgba(79, 70, 229, 0.05);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            background-color: rgba(79, 70, 229, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background-color: var(--primary-hover);
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+        }
+
+        /* Animation Classes */
+        @keyframes fadeIn {
+            from {
                 opacity: 0;
-                transform: translateX(50px);
-                transition: opacity 0.5s ease, transform 0.5s ease;
+                transform: translateY(20px);
             }
-
-            .nav-item.fade-in {
+            to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
+        }
 
-            .burger {
-                display: block;
-            }
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+        }
 
-            .toggle .line1 {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
 
-            .toggle .line2 {
-                opacity: 0;
-            }
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
 
-            .toggle .line3 {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
 
-            .container {
-                padding: 0 15px;
-            }
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
 
-            .card {
-                padding: 1.5rem;
+        .delay-5 {
+            animation-delay: 0.5s;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            h1 {
+                font-size: 2.25rem;
             }
 
             h2 {
                 font-size: 1.75rem;
             }
 
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 1rem;
-            }
-
-            .skill-item {
-                font-size: 0.85rem;
-                padding: 0.5rem 0.75rem;
+            .section-padding {
+                padding: 4rem 0;
             }
         }
 
-        @media screen and (max-width: 480px) {
-            .logo {
-                font-size: 1.2rem;
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--card-bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+                box-shadow: var(--shadow-md);
+                z-index: 1000;
+                padding: 2rem;
             }
 
-            .card {
-                padding: 1rem;
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .burger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .burger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .burger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(3px);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            h1 {
+                font-size: 2rem;
             }
 
             h2 {
                 font-size: 1.5rem;
             }
 
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            .section-padding {
+                padding: 3rem 0;
             }
 
-            .skill-item {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.8rem;
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        @keyframes navLinkFade {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
+        @media screen and (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
             }
-            to {
-                opacity: 1;
-                transform: translateX(0);
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
             }
         }
     </style>
@@ -338,176 +671,270 @@
 
 <body>
     <header>
-        <nav class="container">
-            <a href="#" class="logo">Yogesh Kumar Sharma</a>
-            <ul class="nav-links">
-                <li class="nav-item"><a href="#about">About</a></li>
-                <li class="nav-item"><a href="#experience">Experience</a></li>
-                <li class="nav-item"><a href="#skills">Skills</a></li>
-                <li class="nav-item"><a href="#certifications">Certifications</a></li>
-                <li class="nav-item"><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="dark-mode-toggle" aria-label="Toggle dark mode">🌓</button>
-            <button class="burger" aria-label="Toggle menu">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </button>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <span>Yogesh Kumar Sharma</span>
+                </a>
+                <div class="nav-controls">
+                    <button class="dark-mode-toggle" aria-label="Toggle dark mode">🌓</button>
+                    <button class="burger" aria-label="Toggle menu">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </button>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <br>
-    <main class="container">
-        <section id="about" class="card">
-            <h2>About Me</h2>
-            <p>During my experience, I've honed skills in web development, django, API, web scraping, data analysis, machine learning, and predictive modeling. I've also mastered PySpark, Snowflake, AWS, and automation, alongside expertise in Jira Zephyr
-                API integration, Azure AI Studio, and OpenAI. These skills empower me to effectively tackle complex data challenges.</p>
-        </section>
 
-        <section id="experience">
-            <h2>Work Experience</h2>
-            <div class="card experience-item">
-                <h3>Python Developer Full-time : Gmware (May 2024 - Present)</h3>
-                <p>At Gmware, as a full-time employee, I developed expertise in managing APIs to retrieve data from e-commerce platforms and ensuring data quality through robust validation processes. I gained proficiency in AWS services, including CloudWatch
-                    and Lambda, to streamline monitoring and automate workflows. Additionally, I managed proxies to handle requests effectively, mitigating blocking issues and optimizing resource utilization by minimizing bad requests.</p>
-            </div>
-            <div class="card experience-item">
-                <h3>Python Developer Full-time : PeopleFlow (Jan 2024 - Mar 2024)</h3>
-                <p>At PeopleFlow, as a full-time employee, I honed skills in automation, Jira Zephyr API integration, Azure AI Studio, and OpenAI strengthening data-driven decision-making. My contributions enhanced project outcomes, promoting informed choices.
-                    This experience bolstered Python expertise, enabling me to effectively tackle complex data challenges.</p>
-            </div>
-            <div class="card experience-item">
-                <h3>Data Engineer Intern : Techment Technology (Oct 2023 - Jan 2024)</h3>
-                <p>As a Data Engineer Intern at Techment Technology, I refined skills in PySpark, Snowflake, AWS, enhancing data-driven decision-making. My contributions improved project outcomes, fostering informed choices. This experience fortified Python
-                    proficiency, empowering me to adeptly address intricate data challenges.</p>
-            </div>
+    <div class="overlay"></div>
 
-            <div class="card experience-item">
-                <h3>Data Analytics Consulting Virtual Internship : KPMG India (Sep 2023 - Sep 2023)</h3>
-                <p>I have completed my virtual internship in Data Analytics Consulting Virtual Internship at KPMG. It was definitely a very enriching experience to be a part of this virtual internship program at KPMG. I have accomplished following task in
-                    this internship Data Quality assessment, Data Insights, Presentation.</p>
-            </div>
+    <main>
+        <div class="container">
+            <section id="about" class="card">
+                <h2>About Me</h2>
+                <p>During my experience, I've honed skills in web development, django, API, web scraping, data analysis, machine learning, and predictive modeling. I've also mastered PySpark, Snowflake, AWS, and automation, alongside expertise in Jira Zephyr
+                    API integration, Azure AI Studio, and OpenAI. These skills empower me to effectively tackle complex data challenges.</p>
+            </section>
 
-
-            <div class="card experience-item">
-                <h3>Data Science Intern : Globussoft Technologies (Sep 2022 - Jul 2023)</h3>
-                <p>During my 10-month tenure as a Data Science Intern at Globussoft Technologies, I honed my expertise in web scraping, data analysis, machine learning, and predictive modeling. My contributions to various projects significantly improved
-                    data-driven decision-making processes, enabling more informed choices. This hands-on experience solidified my proficiency in Python, empowering me to tackle complex data challenges effectively.</p>
-            </div>
-        </section>
-
-        <section id="skills" class="card">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">Python</div>
-                <div class="skill-item">NumPy</div>
-                <div class="skill-item">Pandas</div>
-                <div class="skill-item">Matplotlib</div>
-                <div class="skill-item">Seaborn</div>
-                <div class="skill-item">OpenCV</div>
-                <div class="skill-item">NLTK</div>
-                <div class="skill-item">PySpark</div>
-                <div class="skill-item">Django</div>
-                <div class="skill-item">API Development</div>
-                <div class="skill-item">Web Scraping</div>
-                <div class="skill-item">AWS (Lambda, CloudWatch)</div>
-                <div class="skill-item">Azure AI Studio</div>
-                <div class="skill-item">Snowflake</div>
-                <div class="skill-item">Databricks</div>
-                <div class="skill-item">Automation</div>
-                <div class="skill-item">Cloud Operations</div>
-                <div class="skill-item">Machine Learning</div>
-                <div class="skill-item">Natural Language Processing (NLP)</div>
-                <div class="skill-item">Data Analysis</div>
-                <div class="skill-item">ETL Processes</div>
-                <div class="skill-item">Data Quality Assessment</div>
-                <div class="skill-item">Data Insights & Presentation</div>
-                <div class="skill-item">OpenAI</div>
-                <div class="skill-item">Proxies (for request handling in scraping)</div>
-            </div>
-        </section>
-
-        <section id="certifications" class="card">
-            <h2>Certifications</h2>
-            <ul class="certifications-list">
-                <li><a href="python_basic certificate_copy.pdf">Python Basic Certificate by Hackerrank</a></li>
-                <li><a href="KPMG.pdf">Data Analytics Consulting Virtual Internship by KPMG</a></li>
-                <li><a href="1000008273 (3403×2438).jpg">Python For Data Science by National Programme on Technology Enhanced Learning</a></li>
-                <li><a href="UC-3aac104e-5413-447b-99f8-ef296c2b13f5.pdf">100 Days Of Code - The Complete Python Pro Bootcamp For 2023 by Dr. Angela Yu</a></li>
-            </ul>
-        </section>
-
-        <section id="contact" class="card">
-            <h2>Contact</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <a href="mailto:syogesh942@gmail.com">syogesh942@gmail.com</a>
+            <section id="experience">
+                <h2>Work Experience</h2>
+                <div class="timeline">
+                    <div class="experience-item">
+                        <div class="card">
+                            <div class="experience-date">May 2024 - Present</div>
+                            <h3>Python Developer</h3>
+                            <h4>Gmware</h4>
+                            <p>At Gmware, as a full-time employee, I developed expertise in managing APIs to retrieve data from e-commerce platforms and ensuring data quality through robust validation processes. I gained proficiency in AWS services, including CloudWatch
+                                and Lambda, to streamline monitoring and automate workflows. Additionally, I managed proxies to handle requests effectively, mitigating blocking issues and optimizing resource utilization by minimizing bad requests.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="card">
+                            <div class="experience-date">Jan 2024 - Mar 2024</div>
+                            <h3>Python Developer</h3>
+                            <h4>PeopleFlow</h4>
+                            <p>At PeopleFlow, as a full-time employee, I honed skills in automation, Jira Zephyr API integration, Azure AI Studio, and OpenAI strengthening data-driven decision-making. My contributions enhanced project outcomes, promoting informed choices.
+                                This experience bolstered Python expertise, enabling me to effectively tackle complex data challenges.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="card">
+                            <div class="experience-date">Oct 2023 - Jan 2024</div>
+                            <h3>Data Engineer Intern</h3>
+                            <h4>Techment Technology</h4>
+                            <p>As a Data Engineer Intern at Techment Technology, I refined skills in PySpark, Snowflake, AWS, enhancing data-driven decision-making. My contributions improved project outcomes, fostering informed choices. This experience fortified Python
+                                proficiency, empowering me to adeptly address intricate data challenges.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="card">
+                            <div class="experience-date">Sep 2023</div>
+                            <h3>Data Analytics Consulting Virtual Internship</h3>
+                            <h4>KPMG India</h4>
+                            <p>I have completed my virtual internship in Data Analytics Consulting Virtual Internship at KPMG. It was definitely a very enriching experience to be a part of this virtual internship program at KPMG. I have accomplished following task in
+                                this internship Data Quality assessment, Data Insights, Presentation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="card">
+                            <div class="experience-date">Sep 2022 - Jul 2023</div>
+                            <h3>Data Science Intern</h3>
+                            <h4>Globussoft Technologies</h4>
+                            <p>During my 10-month tenure as a Data Science Intern at Globussoft Technologies, I honed my expertise in web scraping, data analysis, machine learning, and predictive modeling. My contributions to various projects significantly improved
+                                data-driven decision-making processes, enabling more informed choices. This hands-on experience solidified my proficiency in Python, empowering me to tackle complex data challenges effectively.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                    <a href="tel:+917987183809">+91 7987183809</a>
+            </section>
+
+            <section id="skills" class="card">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">NumPy</div>
+                    <div class="skill-item">Pandas</div>
+                    <div class="skill-item">Matplotlib</div>
+                    <div class="skill-item">Seaborn</div>
+                    <div class="skill-item">OpenCV</div>
+                    <div class="skill-item">NLTK</div>
+                    <div class="skill-item">PySpark</div>
+                    <div class="skill-item">Django</div>
+                    <div class="skill-item">API Development</div>
+                    <div class="skill-item">Web Scraping</div>
+                    <div class="skill-item">AWS</div>
+                    <div class="skill-item">Azure AI Studio</div>
+                    <div class="skill-item">Snowflake</div>
+                    <div class="skill-item">Databricks</div>
+                    <div class="skill-item">Automation</div>
+                    <div class="skill-item">Cloud Operations</div>
+                    <div class="skill-item">Machine Learning</div>
+                    <div class="skill-item">NLP</div>
+                    <div class="skill-item">Data Analysis</div>
+                    <div class="skill-item">ETL Processes</div>
+                    <div class="skill-item">Data Quality</div>
+                    <div class="skill-item">Data Insights</div>
+                    <div class="skill-item">OpenAI</div>
+                    <div class="skill-item">Proxies</div>
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                    <a href="https://www.linkedin.com/in/syogesh942/">LinkedIn Profile</a>
+            </section>
+
+            <section id="certifications" class="card">
+                <h2>Certifications</h2>
+                <ul class="certifications-list">
+                    <li><a href="python_basic certificate_copy.pdf">Python Basic Certificate by Hackerrank</a></li>
+                    <li><a href="KPMG.pdf">Data Analytics Consulting Virtual Internship by KPMG</a></li>
+                    <li><a href="1000008273 (3403×2438).jpg">Python For Data Science by National Programme on Technology Enhanced Learning</a></li>
+                    <li><a href="UC-3aac104e-5413-447b-99f8-ef296c2b13f5.pdf">100 Days Of Code - The Complete Python Pro Bootcamp For 2023 by Dr. Angela Yu</a></li>
+                </ul>
+            </section>
+
+            <section id="contact" class="card">
+                <h2>Contact</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <a href="mailto:example@example.com">example@example.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Phone</h4>
+                            <a href="tel:+917987183809">+91 7987183809</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/syogesh942/" target="_blank">linkedin.com/in/syogesh942</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/syogesh942" target="_blank">github.com/syogesh942</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Resume</h4>
+                            <a href="Resume-Yogesh-Sharma.pdf" target="_blank">Download Resume</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/+917987183809" target="_blank">Send Message</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                    </svg>
-                    <a href="https://wa.me/+917987183809">WhatsApp Chat</a>
-                </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                    <a href="https://github.com/syogesh942">GitHub Repositories</a>
-                </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    <a href="Resume-Yogesh-Sharma.pdf">Download Resume</a>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Yogesh Kumar Sharma</p>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Yogesh Kumar Sharma. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/syogesh942/" class="social-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/syogesh942" class="social-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    <a href="mailto:example@example.com" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </a>
+
     <script>
+        // Toggle mobile menu
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.overlay');
         const navLinks = document.querySelectorAll('.nav-links li');
 
         function toggleMenu() {
             nav.classList.toggle('active');
-            burger.classList.toggle('toggle');
-
-            navLinks.forEach((link, index) => {
-                if (link.style.animation) {
-                    link.style.animation = '';
-                } else {
-                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-                }
-                link.classList.toggle('fade-in');
-            });
+            burger.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
         }
 
         burger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
 
         // Close mobile menu when a link is clicked
         navLinks.forEach(link => {
@@ -518,57 +945,75 @@
             });
         });
 
+        // Scroll animations
         function handleScroll() {
             const sections = document.querySelectorAll('section');
+            const backToTop = document.querySelector('.back-to-top');
+            
+            // Show/hide back to top button
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+            
+            // Animate sections on scroll
             sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                const isVisible = (rect.top <= window.innerHeight * 0.75) && (rect.bottom >= 0);
-                if (isVisible) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
                 }
             });
         }
 
         window.addEventListener('scroll', handleScroll);
-        window.addEventListener('load', handleScroll);
-
-        const darkModeToggle = document.querySelector('.dark-mode-toggle');
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
+        window.addEventListener('load', () => {
+            handleScroll();
+            // Add initial animation to first section
+            document.querySelector('section').classList.add('visible');
         });
 
-        // Add this new function for smooth scrolling
-        function smoothScroll(target, duration) {
-            const targetElement = document.querySelector(target);
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = ease(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
-
-            function ease(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
-
-            requestAnimationFrame(animation);
+        // Dark mode toggle
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        } else {
+            darkModeToggle.textContent = '🌙';
         }
+        
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                darkModeToggle.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                darkModeToggle.textContent = '🌙';
+            }
+        });
 
-        // Add smooth scrolling to nav links
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                smoothScroll(this.getAttribute('href'), 1000);
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
