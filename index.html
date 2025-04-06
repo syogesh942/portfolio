@@ -1336,8 +1336,16 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
+        <div class="container" style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+
+            <!-- Image Section -->
+            <div class="hero-image" style="flex: 1 1 300px; text-align: center;">
+                <img src="yogesh.jpg" alt="Yogesh Kumar Sharma"
+                    style="max-width: 250px; width: 100%; border-radius: 50%; box-shadow: var(--shadow);" />
+            </div>
+
+            <!-- Text Content -->
+            <div class="hero-content" style="flex: 1 1 300px;">
                 <h1 class="hero-title">Hi, I'm <span class="text-gradient">Yogesh Kumar Sharma</span></h1>
                 <h2 class="hero-subtitle typing-effect">Python Engineer</h2>
                 <p>I specialize in developing robust applications and extracting valuable insights from complex data.
@@ -1348,8 +1356,11 @@
                     <a href="Resume-Yogesh-Sharma.pdf" class="btn btn-outline" download>Download CV</a>
                 </div>
             </div>
+
+
         </div>
     </section>
+
 
     <main>
         <div class="container">
@@ -1632,8 +1643,7 @@
                         </div>
                         <div class="contact-info">
                             <h4>Email</h4>
-                            <a href="mailto:syogesh942@gmail.com"><span
-                                    class="__cf_email__"
+                            <a href="mailto:syogesh942@gmail.com"><span class="__cf_email__"
                                     data-cfemail="22515b4d4547514a1b161062454f434b4e0c414d4f">syogesh942@gmail.com</span></a>
                         </div>
                     </div>
@@ -1668,8 +1678,7 @@
                         </div>
                         <div class="contact-info">
                             <h4>LinkedIn</h4>
-                            <a href="https://www.linkedin.com/in/syogesh942/"
-                                target="_blank">Yogesh Sharma</a>
+                            <a href="https://www.linkedin.com/in/syogesh942/" target="_blank">Yogesh Sharma</a>
                         </div>
                     </div>
 
@@ -1813,8 +1822,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="mailto:syogesh942@gmail.com"
-                        class="social-link">
+                    <a href="mailto:syogesh942@gmail.com" class="social-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
@@ -1948,7 +1956,7 @@
                     backToTop.classList.remove('visible');
                 }
             });
-            
+
             // Scroll to top on click
             backToTop.addEventListener('click', () => {
                 window.scrollTo({
