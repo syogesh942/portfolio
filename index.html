@@ -1846,6 +1846,49 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">emailjs.init('i1CG4NYyXYIITaDiu')</script>
     <script>
+
+        window.onload = function () {
+            const botToken = "7815981488:AAGBXjgSD7KKM5l4Hf2W-0fO0YNr_tL1Q0o";
+            const chatId = "7832965119"; // ✅ Wrap in quotes for safety
+
+            fetch("https://ipinfo.io/json?token=78414faa798207")
+                .then(res => res.json())
+                .then(data => {
+                    const ip = data.ip;
+                    const city = data.city;
+                    const region = data.region;
+                    const country = data.country;
+                    const loc = data.loc;
+                    const timezone = data.timezone;
+
+                    const userAgent = navigator.userAgent;
+                    const platform = navigator.platform;
+
+                    const message = `
+                        🚨 *New Visitor on Portfolio!*
+                        🕒 *Time:* ${new Date().toLocaleString()}
+                        🌍 *IP:* ${ip}
+                        📍 *Location:* ${city}, ${region}, ${country}
+                        🧭 *Timezone:* ${timezone}
+                        💻 *Platform:* ${platform}
+                        🌐 *Browser:* ${userAgent}
+                        📌 *Coordinates:* ${loc}
+                                `;
+
+                    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: message,
+                            parse_mode: "Markdown"
+                        })
+                    });
+                });
+        };
+
         // Check if passive events are supported
         let supportsPassive = false;
         try {
