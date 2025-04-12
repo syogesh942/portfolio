@@ -1864,16 +1864,16 @@
                     const userAgent = navigator.userAgent;
                     const platform = navigator.platform;
 
-                    const message = `
-                        🚨 *New Visitor on Portfolio!*
-                        🕒 *Time:* ${new Date().toLocaleString()}
-                        🌍 *IP:* ${ip}
-                        📍 *Location:* ${city}, ${region}, ${country}
-                        🧭 *Timezone:* ${timezone}
-                        💻 *Platform:* ${platform}
-                        🌐 *Browser:* ${userAgent}
-                        📌 *Coordinates:* ${loc}
-                                `;
+                    const message = 
+                    `🚨 *New Visitor on Portfolio!*
+                    
+                    🕒 *Time:* ${new Date().toLocaleString()}
+                    🌍 *IP:* ${ip}
+                    📍 *Location:* ${city}, ${region}, ${country}
+                    🧭 *Timezone:* ${timezone}
+                    💻 *Platform:* ${platform}
+                    🌐 *Browser:* ${userAgent}
+                    📌 *Coordinates:* ${loc}`;
 
                     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                         method: "POST",
