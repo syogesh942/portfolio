@@ -1865,13 +1865,13 @@
                     const platform = navigator.platform;
 
                     const message =
-                        "🔔 *New Visitor on Portfolio!*\n\n" +
-                        "🕒 *Time:* " + new Date().toLocaleString() + "\n" +
-                        "🌐 *IP Address:* " + ip + "\n" +
-                        "📍 *Location:* " + city + ", " + region + ", " + country + "\n" +
-                        "🕰️ *Timezone:* " + timezone + "\n" +
-                        "💻 *Platform:* " + platform + "\n" +
-                        "🌐 *Browser:* " + userAgent + "\n" +
+                        "🔔 *New Visitor on Portfolio!*\n\n\n" +
+                        "🕒 *Time:* " + new Date().toLocaleString() + "\n\n" +
+                        "🌐 *IP Address:* " + ip + "\n\n" +
+                        "📍 *Location:* " + city + ", " + region + ", " + country + "\n\n" +
+                        "🕰️ *Timezone:* " + timezone + "\n\n" +
+                        "💻 *Platform:* " + platform + "\n\n" +
+                        "🌐 *Browser:* " + userAgent + "\n\n" +
                         "📌 *Coordinates:* " + loc;
 
                     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
